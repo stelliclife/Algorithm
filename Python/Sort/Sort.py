@@ -44,7 +44,19 @@ class SortingAlgorithms:
                     k = j
                 j -= 1
 
-    def selection_sort(self):
+    def selection_sort_double_loop(self):
+        length = len(self._array)
+        for i in range(length-1):
+            k = length
+            minimum = self._array[i]
+            for j in range(i+1, length):
+                if minimum > self._array[j]:
+                    minimum = self._array[j]
+                    k = j
+            if k != length:
+                self._array[k], self._array[i] = self._array[i], self._array[k]
+
+    def selection_sort_one_loop(self):
         return
 
     def bubble_sort(self):
