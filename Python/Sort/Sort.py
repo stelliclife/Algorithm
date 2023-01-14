@@ -57,12 +57,55 @@ class SortingAlgorithms:
                 self._array[k], self._array[i] = self._array[i], self._array[k]
 
     def selection_sort_one_loop(self):
+        length = len(self._array)
+        i, j, k = 0, 1, length
+        minimum = self._array[j]
+
+        while True:
+            if minimum > self._array[j]:
+                minimum = self._array[j]
+                k = j
+            if j != length-1:
+                j += 1
+            else:
+                if k != length:
+                    self._array[k], self._array[i] = self._array[i], self._array[k]
+                k = length
+                i += 1
+                j = i + 1
+            if i == length-1:
+                break
+            if j == i + 1:
+                minimum = self._array[i]
+
+    def bubble_sort_double_loop(self):
+        length = len(self._array)
+        range_ = range(1, length)
+
+        for i in reversed(range_):
+            for j in range(i):
+                if self._array[j] > self._array[j+1]:
+                    self._array[j], self._array[j+1] = self._array[j+1], self._array[j]
+
+    def bubble_sort_one_loop(self):
+        length = len(self._array)
+        i, j = length-1, 0
+
+        while True:
+            if i == 0:
+                break
+            if self._array[j] > self._array[j+1]:
+                self._array[j], self._array[j+1] = self._array[j+1], self._array[j]
+            if j != i-1:
+                j += 1
+            else:
+                i -= 1
+                j = 0
+
+    def merge_sort_top_down(self):
         return
 
-    def bubble_sort(self):
-        return
-
-    def merge_sort(self):
+    def merge_sort_bottom_up(self):
         return
 
     def quick_sort(self):
