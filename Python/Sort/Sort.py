@@ -102,11 +102,52 @@ class SortingAlgorithms:
                 i -= 1
                 j = 0
 
-    def merge_sort_top_down(self):
-        return
+    def top_down_merge_sort(self, array, left, right):
+        if right - left <= 0:
+            return None
 
-    def merge_sort_bottom_up(self):
-        return
+        middle = int((left+right) // 2)
+
+        self.top_down_merge_sort(array, left, middle)
+        self.top_down_merge_sort(array, middle+1, right)
+        self._merge_and_sort(array, left, middle, right)
+        return None
+
+    def bottom_up_merge_sort(self, array):
+        length = len(array)
+        width, k = 1, 0
+
+        while width <= length:
+            k = 0
+            width *= 2
+            while k < length:
+                left = k
+                right = k + width - 1
+                middle = right - (width//2)
+                if right > length-1:
+                    right = length - 1
+                self._merge_and_sort(array, left, middle, right)
+                k += width
+
+    def _merge_and_sort(self, array, left, middle, right):
+        left_ = array[left:middle+1]
+        right_ = array[middle+1:right+1]
+        i, j = 0, 0
+        for k in range(left, right+1):
+            if left_ and right_:
+                if left_[i] < right_[j]:
+                    self._array[k] = left_[i]
+                    left_.pop(i)
+                else:
+                    self._array[k] = right_[j]
+                    right_.pop(j)
+            else:
+                if left_:
+                    self._array[k] = left_[i]
+                    left_.pop(i)
+                else:
+                    self._array[k] = right_[j]
+                    right_.pop(j)
 
     def quick_sort(self):
         return
