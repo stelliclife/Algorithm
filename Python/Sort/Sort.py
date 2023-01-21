@@ -149,8 +149,28 @@ class SortingAlgorithms:
                     self._array[k] = right_[j]
                     right_.pop(j)
 
-    def quick_sort(self):
-        return
+    def quick_sort(self, array, left, right):
+        i, j = -1, 0
+        pivot = array[right]
+        if left >= right:
+            return None
+
+        while j <= right:
+            if j == i:
+                j += 1
+            if j == right:
+                i += 1
+                array[i], array[j] = array[j], array[i]
+            if array[j] < pivot:
+                i += 1
+                array[i], array[j] = array[j], array[i]
+            else:
+                j += 1
+        self._array = array
+        k = array.index(pivot)
+
+        self.quick_sort(array, left, k-1)
+        self.quick_sort(array, k+1, right)
 
     def heap_sort(self):
         return
