@@ -172,5 +172,27 @@ class SortingAlgorithms:
         self.quick_sort(array, left, k-1)
         self.quick_sort(array, k+1, right)
 
-    def heap_sort(self):
-        return
+    def heap_sort(self, array):
+        length = len(array)
+
+        self._heapify(array, length)
+        length -= 1
+        while length >= 0:
+            self._heapify(array, length)
+            length -= 1
+
+    def _heapify(self, array, size):
+        n = size // 2 - 1
+        l = n * 2 + 1
+        r = n * 2 + 2
+
+        while n >= 0:
+            if l < size and array[n] <= array[l]:
+                array[n], array[l] = array[l], array[n]
+            if r < size and array[n] <= array[r]:
+                array[n], array[r] = array[r], array[n]
+            if n == 0:
+                array[n], array[size-1] = array[size-1], array[n]
+            n -= 1
+            l = n * 2 + 1
+            r = n * 2 + 2
